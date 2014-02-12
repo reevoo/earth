@@ -1,19 +1,67 @@
-// TODO
 ReevooEarth.Animator = function () {
+  var privateEarth, privateMarks;
+  var index = 0;
+  var isAnimating = false;
+
   this.animate = function (earth, marks) {
-    marks[0].activate();
+    privateEarth = earth;
+    privateMarks = marks;
 
-    // Create a new LookAt.
-    var lookAt = earth.createLookAt('');
+    setSpeed(0.3);
+    monitorAnimation();
+    animateRecursively();
+  };
 
-    // Set the position values.
-    lookAt.setLatitude(12.345);
-    lookAt.setLongitude(54.321);
-    lookAt.setRange(500000.0); //default is 0.0
+  // private
+  var animateRecursively = function () {
+    nextIndex();
+    animateOne();
+    queueAnimation();
+  };
 
-    earth.getOptions().setFlyToSpeed(0.5);
+  var animateOne = function () {
+    isAnimating = true;
+    var mark = privateMarks[index];
 
-    // Update the view in Google Earth.
-    earth.getView().setAbstractView(lookAt);
+    flyTo(mark);
+    mark.activate();
+  };
+
+  var monitorAnimation = function () {
+    var event = "viewchangeend";
+
+    google.earth.addEventListener(privateEarth.getView(), event, function () {
+      isAnimating = false;
+    });
+  };
+
+  var queueAnimation = function () {
+    setTimeout(function () {
+      if (isAnimating) {
+        queueAnimation();
+      }
+      else {
+        animateRecursively();
+      }
+    }, 5000);
+  };
+
+  var nextIndex = function () {
+    index += 1;
+    index %= privateMarks.length;
+  };
+
+  var flyTo = function(mark) {
+    var lookAt = privateEarth.createLookAt('');
+
+    lookAt.setLatitude(mark.latitude);
+    lookAt.setLongitude(mark.longitude);
+    lookAt.setRange(500000);
+
+    privateEarth.getView().setAbstractView(lookAt);
+  };
+
+  var setSpeed = function (speed) {
+    privateEarth.getOptions().setFlyToSpeed(speed);
   };
 };

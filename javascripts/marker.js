@@ -17,7 +17,9 @@ ReevooEarth.Marker = function () {
     return {
       activate: function () {
         privateEarth.setBalloon(balloon);
-      }
+      },
+      latitude: latitude,
+      longitude: longitude
     }
   };
 
@@ -72,13 +74,5 @@ ReevooEarth.Marker = function () {
 
   var attachPlacemark = function (placemark) {
     privateEarth.getFeatures().appendChild(placemark);
-  };
-
-  var activator = function (balloon) {
-    return {
-      activate: function () {
-        privateEarth.setBalloon(balloon);
-      }
-    }
   };
 };
