@@ -4,6 +4,11 @@ ReevooEarth.Animator = function () {
   var isAnimating = false;
 
   this.animate = function (earth, marks) {
+    if (marks.length == 0) {
+      alert("No customer experience reviews.");
+      return;
+    }
+
     privateEarth = earth;
     privateMarks = marks;
 

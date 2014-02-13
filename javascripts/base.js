@@ -5,8 +5,10 @@ var ReevooEarth = function (id) {
   var renderer = new ReevooEarth.Renderer();
   var animator = new ReevooEarth.Animator();
 
+  client.authenticate();
+
   loader.load(id, function (earth) {
-    var reviews = client.latestReviews();
+    var reviews = client.customerExperienceReviews();
 
     var marks = reviews.map(function (review) {
       return marker.mark(
