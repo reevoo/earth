@@ -53,6 +53,7 @@ ReevooEarth.Marker = function () {
 
     balloon.setContentString(content);
     balloon.setMinWidth(200);
+    balloon.setMaxWidth(500);
     balloon.setMaxHeight(200);
     balloon.setCloseButtonEnabled(false);
 

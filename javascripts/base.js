@@ -6,17 +6,16 @@ var ReevooEarth = function (id) {
   var animator = new ReevooEarth.Animator();
 
   client.authenticate();
+  var reviews = client.customerExperienceReviews();
 
   loader.load(id, function (earth) {
-    var reviews = client.customerExperienceReviews();
-
     var marks = reviews.map(function (review) {
       return marker.mark(
         earth,
-        review.product_name,
+        review.reviewer.first_name,
         renderer.render(review),
-        review.latitude,
-        review.longitude
+        review.location.latitude,
+        review.location.longitude
       );
     });
 
