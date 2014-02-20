@@ -1,7 +1,6 @@
 ReevooEarth.Animator = function () {
+  var queue = new ReevooEarth.Animator.Queue();
   var privateEarth, privateMarks;
-  var index = 0;
-  var isAnimating = false;
 
   this.animate = function (earth, marks) {
     if (marks.length == 0) {
@@ -13,50 +12,17 @@ ReevooEarth.Animator = function () {
     privateMarks = marks;
 
     setSpeed(0.3);
-    monitorAnimation();
-    animateRecursively();
+
+    for (var i = 0; i < marks.length; i++) {
+      var mark = marks[i];
+      queue.add(earth, function () {
+        flyTo(mark);
+      });
+    };
   };
 
   // private
-  var animateRecursively = function () {
-    nextIndex();
-    animateOne();
-    queueAnimation();
-  };
-
-  var animateOne = function () {
-    isAnimating = true;
-    var mark = privateMarks[index];
-
-    flyTo(mark);
-    mark.activate();
-  };
-
-  var monitorAnimation = function () {
-    var event = "viewchangeend";
-
-    google.earth.addEventListener(privateEarth.getView(), event, function () {
-      isAnimating = false;
-    });
-  };
-
-  var queueAnimation = function () {
-    setTimeout(function () {
-      if (isAnimating) {
-        queueAnimation();
-      }
-      else {
-        animateRecursively();
-      }
-    }, 5000);
-  };
-
-  var nextIndex = function () {
-    index += 1;
-    index %= privateMarks.length;
-  };
-
-  var flyTo = function(mark) {
+  var flyTo = function (mark) {
     var lookAt = privateEarth.createLookAt('');
 
     lookAt.setLatitude(mark.latitude);
@@ -69,4 +35,5 @@ ReevooEarth.Animator = function () {
   var setSpeed = function (speed) {
     privateEarth.getOptions().setFlyToSpeed(speed);
   };
+
 };

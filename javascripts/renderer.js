@@ -21,7 +21,7 @@ ReevooEarth.Renderer = function () {
     }
 
     html = html.concat('<p style="font-style: italic">"' + generalComments + '"</p>');
-    html = html.concat('<p style="margin-top: 20px; float: right">' + firstName + ', ' + location + '</p>');
+    html = html.concat('<p style="margin-top: 20px; float: right">' + firstName + '</p>');
 
     return html;
   };

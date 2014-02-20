@@ -13,11 +13,21 @@ ReevooEarth.Client = function () {
 
     var url = api;
     url += "/organisations;trkref=" + trkref;
-    url += "/customer_experience_reviews";
+    url += "/customer_experience_reviews?per_page=1000";
 
     var data;
     $.get(url, function (d) { data = d; });
-    return data.customer_experience_reviews;
+    var reviews = data.customer_experience_reviews;
+
+    var foo = [];
+    for (var i = 0; i < reviews.length; i++) {
+      var r = reviews[i];
+      if (r.location) {
+        foo.push(r);
+      }
+    }
+
+    return foo;
   };
 
   // private
