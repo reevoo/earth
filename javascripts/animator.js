@@ -1,7 +1,6 @@
 ReevooEarth.Animator = function () {
   var privateEarth, privateMarks;
   var index = 0;
-  var isAnimating = false;
 
   this.animate = function (earth, marks) {
     if (marks.length == 0) {
@@ -13,7 +12,6 @@ ReevooEarth.Animator = function () {
     privateMarks = marks;
 
     setSpeed(0.3);
-    monitorAnimation();
     animateRecursively();
   };
 
@@ -21,34 +19,14 @@ ReevooEarth.Animator = function () {
   var animateRecursively = function () {
     nextIndex();
     animateOne();
-    queueAnimation();
+    onceAnimationHasFinished(animateRecursively);
   };
 
   var animateOne = function () {
-    isAnimating = true;
     var mark = privateMarks[index];
 
     flyTo(mark);
     mark.activate();
-  };
-
-  var monitorAnimation = function () {
-    var event = "viewchangeend";
-
-    google.earth.addEventListener(privateEarth.getView(), event, function () {
-      isAnimating = false;
-    });
-  };
-
-  var queueAnimation = function () {
-    setTimeout(function () {
-      if (isAnimating) {
-        queueAnimation();
-      }
-      else {
-        animateRecursively();
-      }
-    }, 5000);
   };
 
   var nextIndex = function () {
@@ -69,4 +47,17 @@ ReevooEarth.Animator = function () {
   var setSpeed = function (speed) {
     privateEarth.getOptions().setFlyToSpeed(speed);
   };
+
+  var onceAnimationHasFinished = function (nextEvent) {
+    var callThenUnbind = function() {
+      try {
+        nextEvent();
+      } catch(e) {
+        console.log("Error in animation action: " + e);
+      }
+      google.earth.removeEventListener(privateEarth.getView(), 'viewchangeend', callThenUnbind);
+    };
+
+    google.earth.addEventListener(privateEarth.getView(), 'viewchangeend', callThenUnbind);
+  }
 };
