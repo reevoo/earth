@@ -16,6 +16,7 @@ ReevooEarth.Loader = function () {
 
   var successCallback = function (instance) {
     instance.getWindow().setVisibility(true);
+    instance.getOptions().setFlyToSpeed(0.3);
     privateCallback(instance);
   };
 

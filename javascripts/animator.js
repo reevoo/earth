@@ -1,6 +1,5 @@
 ReevooEarth.Animator = function () {
   var privateEarth, privateMarks;
-  var index = 0;
 
   this.animate = function (earth, marks) {
     if (marks.length == 0) {
@@ -11,27 +10,31 @@ ReevooEarth.Animator = function () {
     privateEarth = earth;
     privateMarks = marks;
 
-    setSpeed(0.3);
-    animateRecursively();
+    animateRecursively(0);
   };
 
   // private
-  var animateRecursively = function () {
-    nextIndex();
-    animateOne();
-    onceAnimationHasFinished(animateRecursively);
-  };
-
-  var animateOne = function () {
+  var animateRecursively = function (index) {
     var mark = privateMarks[index];
 
-    flyTo(mark);
-    mark.activate();
+    var nextAnimation = function () {
+      index += 1;
+      index %= privateMarks.length;
+
+      animateRecursively(index);
+    };
+
+    animateOne(mark, nextAnimation);
   };
 
-  var nextIndex = function () {
-    index += 1;
-    index %= privateMarks.length;
+  var animateOne = function (mark, nextAnimation) {
+    flyTo(mark);
+
+    after("animation", function () {
+      mark.activate();
+
+      after(1000, nextAnimation);
+    });
   };
 
   var flyTo = function(mark) {
@@ -44,20 +47,21 @@ ReevooEarth.Animator = function () {
     privateEarth.getView().setAbstractView(lookAt);
   };
 
-  var setSpeed = function (speed) {
-    privateEarth.getOptions().setFlyToSpeed(speed);
+  var after = function (event, callback) {
+    if (isNaN(event)) {
+      afterAnimation(callback);
+    }
+    else {
+      setTimeout(callback, event);
+    }
   };
 
-  var onceAnimationHasFinished = function (nextEvent) {
-    var callThenUnbind = function() {
-      try {
-        nextEvent();
-      } catch(e) {
-        console.log("Error in animation action: " + e);
-      }
+  var afterAnimation = function (callback) {
+    var callThenUnbind = function () {
+      callback();
       google.earth.removeEventListener(privateEarth.getView(), 'viewchangeend', callThenUnbind);
     };
 
     google.earth.addEventListener(privateEarth.getView(), 'viewchangeend', callThenUnbind);
-  }
+  };
 };
