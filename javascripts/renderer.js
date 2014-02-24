@@ -4,7 +4,6 @@ ReevooEarth.Renderer = function () {
     var generalComments = responses[2];
     var wouldBuyAgain = responses[3];
     var firstName = review.reviewer.first_name;
-    var location = review.reviewer.location;
     var displayDate = review.display_date;
 
     var html = "";
@@ -21,7 +20,7 @@ ReevooEarth.Renderer = function () {
     }
 
     html = html.concat('<p style="font-style: italic">"' + generalComments + '"</p>');
-    html = html.concat('<p style="margin-top: 20px; float: right">' + firstName + ', ' + location + '</p>');
+    html = html.concat('<p style="margin-top: 20px; float: right">' + firstName + '</p>');
 
     return html;
   };

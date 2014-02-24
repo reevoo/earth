@@ -28,21 +28,23 @@ ReevooEarth.Animator = function () {
   };
 
   var animateOne = function (mark, nextAnimation) {
-    flyTo(mark);
-
+    flyTo(mark, 20000);
     after("animation", function () {
-      mark.activate();
+      mark.open();
+      after(3000, function () {
+        mark.close();
 
-      after(1000, nextAnimation);
+        after(1000, nextAnimation);
+      });
     });
   };
 
-  var flyTo = function(mark) {
+  var flyTo = function(mark, range) {
     var lookAt = privateEarth.createLookAt('');
 
     lookAt.setLatitude(mark.latitude);
     lookAt.setLongitude(mark.longitude);
-    lookAt.setRange(500000);
+    lookAt.setRange(range);
 
     privateEarth.getView().setAbstractView(lookAt);
   };

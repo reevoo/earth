@@ -15,8 +15,11 @@ ReevooEarth.Marker = function () {
     attachPlacemark(placemark);
 
     return {
-      activate: function () {
+      open: function () {
         privateEarth.setBalloon(balloon);
+      },
+      close: function () {
+        privateEarth.setBalloon(null);
       },
       latitude: latitude,
       longitude: longitude

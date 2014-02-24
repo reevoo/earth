@@ -10,9 +10,10 @@ var ReevooEarth = function (id) {
 
   loader.load(id, function (earth) {
     var marks = reviews.map(function (review) {
+
       return marker.mark(
         earth,
-        review.reviewer.first_name,
+        locationName(review),
         renderer.render(review),
         review.location.latitude,
         review.location.longitude
@@ -21,4 +22,18 @@ var ReevooEarth = function (id) {
 
     animator.animate(earth, marks);
   });
+
+  var locationName = function (review) {
+    var name = review.reviewer.location;
+
+    var lat = review.location.latitude;
+    var long = review.location.longitude;
+    var coord = round(lat, 2) + ", " + round(long, 2);
+
+    return name || coord;
+  };
+
+  var round = function (string, places) {
+    return parseFloat(string).toFixed(places);
+  };
 };
