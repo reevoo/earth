@@ -3,8 +3,6 @@ ReevooEarth.Renderer = function () {
     var responses = review.responses.map(function (r) { return r.answer; });
     var generalComments = responses[2];
     var wouldBuyAgain = responses[3];
-    var firstName = review.reviewer.first_name;
-    var displayDate = review.display_date;
 
     var html = "";
     var wouldBuyAgainText;
@@ -20,8 +18,22 @@ ReevooEarth.Renderer = function () {
     }
 
     html = html.concat('<p style="font-style: italic">"' + generalComments + '"</p>');
-    html = html.concat('<p style="margin-top: 20px; float: right">' + firstName + '</p>');
+    html = html.concat('<p style="margin-top: 20px">' + firstName(review) + '</p>');
+    html = html.concat('<p>' + submittedAt(review) + '</p>');
+
+
+    console.log(review);
 
     return html;
+  };
+
+  var submittedAt = function (review) {
+    var date = review.submitted_at;
+    date = date.replace("UTC", "");
+    return jQuery.timeago(date);
+  };
+
+  var firstName = function (review) {
+    return review.reviewer.first_name || "anonymous";
   };
 };
