@@ -13,10 +13,10 @@ var ReevooEarth = function (id) {
 
       return marker.mark(
         earth,
-        review.location.city || "", // delete the 'or' when data comes from API
+        review.locationName,
         renderer.render(review),
-        review.location.latitude,
-        review.location.longitude
+        review.latitude,
+        review.longitude
       );
     });
 

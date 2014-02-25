@@ -1,8 +1,7 @@
 ReevooEarth.Renderer = function () {
   this.render = function(review) {
-    var responses = review.responses.map(function (r) { return r.answer; });
-    var generalComments = responses[2];
-    var wouldBuyAgain = responses[3];
+    var generalComments = review.generalComments;
+    var wouldBuyAgain = review.wouldBuyAgain;
 
     var html = "";
     var wouldBuyAgainText;
@@ -23,16 +22,15 @@ ReevooEarth.Renderer = function () {
 
     console.log(review);
 
+
     return html;
   };
 
   var submittedAt = function (review) {
-    var date = review.submitted_at;
-    date = date.replace("UTC", "");
-    return jQuery.timeago(date);
+    return jQuery.timeago(review.date.replace("UTC", ""));
   };
 
   var firstName = function (review) {
-    return review.reviewer.first_name || "anonymous";
+    return review.firstName || "anonymous";
   };
 };

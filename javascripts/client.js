@@ -1,5 +1,6 @@
 ReevooEarth.Client = function () {
   var api = "https://api.reevoocloud.com/v4";
+  var adapter = new ReevooEarth.Client.Adapter();
 
   this.authenticate = function () {
     var user = param("username");
@@ -17,7 +18,9 @@ ReevooEarth.Client = function () {
 
     var data;
     $.get(url, function (d) { data = d; });
-    return data.customer_experience_reviews;
+    var reviews = data.customer_experience_reviews;
+
+    return adapter.customerExperience(reviews);
   };
 
   // private
