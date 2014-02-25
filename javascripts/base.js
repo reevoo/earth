@@ -13,7 +13,7 @@ var ReevooEarth = function (id) {
 
       return marker.mark(
         earth,
-        locationName(review),
+        review.location.city || "", // delete the 'or' when data comes from API
         renderer.render(review),
         review.location.latitude,
         review.location.longitude
@@ -22,16 +22,6 @@ var ReevooEarth = function (id) {
 
     animator.animate(earth, marks);
   });
-
-  var locationName = function (review) {
-    var name = review.reviewer.location;
-
-    var lat = review.location.latitude;
-    var long = review.location.longitude;
-    var coord = round(lat, 2) + ", " + round(long, 2);
-
-    return name || coord;
-  };
 
   var round = function (string, places) {
     return parseFloat(string).toFixed(places);

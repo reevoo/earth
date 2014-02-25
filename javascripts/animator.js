@@ -28,13 +28,16 @@ ReevooEarth.Animator = function () {
   };
 
   var animateOne = function (mark, nextAnimation) {
-    flyTo(mark, 20000);
+    flyTo(mark, 500000);
     after("animation", function () {
-      mark.open();
-      after(3000, function () {
-        mark.close();
+      flyTo(mark, 20000);
+      after("animation", function () {
+        mark.open();
+        after(3000, function () {
+          mark.close();
 
-        after(1000, nextAnimation);
+          after(1000, nextAnimation);
+        });
       });
     });
   };

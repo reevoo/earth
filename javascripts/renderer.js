@@ -21,7 +21,6 @@ ReevooEarth.Renderer = function () {
     html = html.concat('<p style="margin-top: 20px">' + firstName(review) + '</p>');
     html = html.concat('<p>' + submittedAt(review) + '</p>');
 
-
     console.log(review);
 
     return html;
