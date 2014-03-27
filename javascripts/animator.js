@@ -1,14 +1,16 @@
 ReevooEarth.Animator = function () {
-  var privateEarth, privateMarks;
+  var privateEarth, privateMarks, privateInterstitial;
+  var interstitialReviewCounter = 1;
 
-  this.animate = function (earth, marks) {
+  this.animate = function (earth, marks, interstitial) {
     if (marks.length == 0) {
       alert("No customer experience reviews.");
       return;
     }
 
-    privateEarth = earth;
-    privateMarks = marks;
+    privateEarth        = earth;
+    privateMarks        = marks;
+    privateInterstitial = interstitial;
 
     animateRecursively(0);
   };
@@ -28,18 +30,27 @@ ReevooEarth.Animator = function () {
   };
 
   var animateOne = function (mark, nextAnimation) {
-    flyTo(mark, 500000);
-    after("animation", function () {
-      flyTo(mark, 20000);
+    if (interstitialReviewCounter % 4 == 0) {
+      privateInterstitial.display(nextAnimation);
+    }
+    else {
+      flyTo(mark, 500000);
       after("animation", function () {
-        mark.open();
-        after(3000, function () {
-          mark.close();
+        privateEarth.getOptions().setGridVisibility(false);
+        flyTo(mark, 20000);
+        after("animation", function () {
+          mark.open();
+          var length = mark.length;
+          after(3000, function () {
+            mark.close();
+            privateEarth.getOptions().setGridVisibility(true);
 
-          after(1000, nextAnimation);
+            after(1000, nextAnimation);
+          });
         });
       });
-    });
+    }
+    interstitialReviewCounter += 1;
   };
 
   var flyTo = function(mark, range) {

@@ -1,18 +1,27 @@
 ReevooEarth.Marker = function () {
   var privateEarth;
-  var imageUrl = "http://www.reevoo.com/images/homepage/introduction/narwhals.png";
+  var defaultImage = "http://www.reevoo.com/images/homepage/introduction/narwhals.png";
 
-  this.mark = function (earth, title, content, latitude, longitude) {
+  this.mark = function (earth, title, content, review, latitude, longitude, image) {
     privateEarth = earth;
 
+    if (!image) {
+      image = defaultImage;
+    }
+
     var placemark   = createPlacemark(title, latitude, longitude);
-    var normalStyle = createStyle(imageUrl, 1.0);
-    var hoverStyle  = createStyle(imageUrl, 1.5);
+    var normalStyle = createStyle(image, 1.0);
+    var hoverStyle  = createStyle(image, 1.5);
     var balloon     = createBalloon(content);
 
     attachStyles(placemark, normalStyle, hoverStyle);
     attachBalloon(placemark, balloon);
     attachPlacemark(placemark);
+
+    var wordCount = 0;
+    if (review) {
+      wordCount = review.generalComments.split(' ').length
+    }
 
     return {
       open: function () {
@@ -22,7 +31,8 @@ ReevooEarth.Marker = function () {
         privateEarth.setBalloon(null);
       },
       latitude: latitude,
-      longitude: longitude
+      longitude: longitude,
+      wordCount: wordCount
     }
   };
 

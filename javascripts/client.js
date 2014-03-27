@@ -1,5 +1,5 @@
 ReevooEarth.Client = function () {
-  var api = "https://api.reevoocloud.com/v4";
+  var api = "http://rw-api3.reevoocloud.com/v4";
   var adapter = new ReevooEarth.Client.Adapter();
 
   this.authenticate = function () {

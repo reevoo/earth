@@ -1,0 +1,22 @@
+header img {
+  width: 200px;
+}
+
+header span {
+  font-style: italic;
+  color: gray;
+  font-size: 70%;
+}
+
+#interstitial {
+  display: none;
+  background: white;
+  height: 1000px;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 300%;
+}
+
+#interstitial p {
+  padding-top: 50px;
+}

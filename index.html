@@ -3,11 +3,11 @@
 <head>
   <title>Reevoo Earth</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
   <script type="text/javascript" src="javascripts/vendor/jquery.timeago.js"></script>
-
   <script type="text/javascript" src="javascripts/base.js"></script>
   <script type="text/javascript" src="javascripts/loader.js"></script>
   <script type="text/javascript" src="javascripts/marker.js"></script>
@@ -15,11 +15,24 @@
   <script type="text/javascript" src="javascripts/client/adapter.js"></script>
   <script type="text/javascript" src="javascripts/renderer.js"></script>
   <script type="text/javascript" src="javascripts/animator.js"></script>
+  <script type="text/javascript" src="javascripts/interstitial.js"></script>
 </head>
 <body>
-  <div id="container"></div>
+  <div id="reevoo-earth"></div>
+  <div id="interstitial">
+    <header>
+      <img src="http://currys.cdn.dixons.com/grafx/images/logos/currys_logo.png" />
+      <span>in partnership with</span>
+      <img src="http://www.reevoo.com/wp-content/themes/reevoo/images/logo.svg" />
+    </header>
+
+    <p style="color: #6ec148">212,000 reviews collected</p>
+    <p style="color: #1278db">12 countries</p>
+    <p style="color: #551a8b">17 languages</p>
+  </div>
+
   <script>
-    new ReevooEarth("container");
+    new ReevooEarth("reevoo-earth");
   </script>
 </body>
 </html>
