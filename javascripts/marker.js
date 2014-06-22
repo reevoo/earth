@@ -20,7 +20,7 @@ ReevooEarth.Marker = function () {
 
     var wordCount = 0;
     if (review) {
-      wordCount = review.generalComments.split(' ').length
+//      wordCount = review.generalComments.split(' ').length
     }
 
     return {

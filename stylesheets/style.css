@@ -1,22 +1,36 @@
 header img {
-  width: 200px;
+    width: 200px;
 }
 
 header span {
-  font-style: italic;
-  color: gray;
-  font-size: 70%;
+    font-style: italic;
+    color: gray;
+    font-size: 70%;
 }
 
 #interstitial {
-  display: none;
-  background: white;
-  height: 1000px;
-  text-align: center;
-  padding-top: 50px;
-  font-size: 300%;
+    display: none;
+    background: white;
+    height: 1000px;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 300%;
 }
 
 #interstitial p {
-  padding-top: 50px;
+    padding-top: 50px;
+}
+
+#popup {
+    width: 560px;
+    background-color: rgba(245, 245, 245, 1);
+    border-bottom: 5px solid rgba(254, 133, 9, 1);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#popup #content > div {
+    
 }
