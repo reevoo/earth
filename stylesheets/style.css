@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+
 header img {
     width: 200px;
 }
@@ -34,3 +36,92 @@ header span {
 #popup #content > div {
     
 }
+
+#content {
+  margin: 10px;
+  font-family: 'Lato', sans-serif;
+}
+
+div#product {
+  padding-bottom: 10px;
+}
+
+.count {
+  font-size: 50px;
+  color: #FD7928;
+  font-weight: bold;
+}
+
+img.product-image {
+  display: inline-block;
+}
+
+div.score {
+  display: inline-block;
+  vertical-align: top;
+  padding: 15px;
+}
+
+.score div.text {
+  font-size: 17px;
+}
+
+div.published {
+  display: inline-block;
+  float: right;
+  padding: 20px 50px 0 0;
+}
+
+.published img {
+  width: 50px;
+}
+
+span.published-at {
+  font-size: 190%;
+  color: #B3B3B3;
+  position: relative;
+  bottom: 14px;
+}
+
+.published-at em {
+  font-weight: bold;
+}
+
+.left-smiley {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.left-smiley img {
+  padding-right: 10px;
+  width: 65%;
+}
+
+img#blue-reevoo-icon {
+  vertical-align: top;
+  width: 12px;
+}
+
+img#orange-reevoo-icon {
+  width: 12px;
+}
+
+.contents {
+  display: inline-block;
+  width: 460px;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+div.points {
+  padding: 10px 0;
+}
+
+div#username {
+  font-weight: bold;
+  font-size: 120%;
+  padding: 10px 0 0 50px;
+}
+
+
