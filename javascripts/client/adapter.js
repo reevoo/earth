@@ -11,7 +11,7 @@ ReevooEarth.Client.Adapter = function () {
         generalComments: responses[2],
         wouldBuyAgain: responses[3],
         firstName: review.reviewer.first_name,
-        date: review.submitted_at,
+        date: review.submitted_at
       };
     });
   };
