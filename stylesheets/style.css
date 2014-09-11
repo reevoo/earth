@@ -24,7 +24,6 @@ header span {
 }
 
 #popup {
-    width: 560px;
     background-color: rgba(245, 245, 245, 1);
     border-bottom: 5px solid rgba(254, 133, 9, 1);
     -webkit-border-radius: 15px;
@@ -54,6 +53,9 @@ div#product {
 
 img.product-image {
   display: inline-block;
+  max-height: 90pt;
+  max-width: 90pt;
+  padding-right: 7pt;
 }
 
 div.score {
@@ -73,7 +75,7 @@ div.published {
 }
 
 .published img {
-  width: 50px;
+  max-width: 50px;
 }
 
 span.published-at {
@@ -108,7 +110,7 @@ img#orange-reevoo-icon {
 
 .contents {
   display: inline-block;
-  width: 460px;
+  width: 600px;
   font-style: italic;
   font-size: 17px;
   line-height: 1.2;
@@ -122,6 +124,11 @@ div#username {
   font-weight: bold;
   font-size: 120%;
   padding: 10px 0 0 50px;
+}
+
+.yourlocation {
+  background-color: white;
+  width:200px;
 }
 
 

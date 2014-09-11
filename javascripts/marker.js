@@ -63,13 +63,12 @@ ReevooEarth.Marker = function () {
 
   var createBalloon = function (content) {
     var balloon = privateEarth.createHtmlStringBalloon('');
-
     balloon.setContentString(content);
     balloon.setMinWidth(200);
-    balloon.setMaxWidth(500);
-    balloon.setMaxHeight(200);
+    balloon.setMaxWidth(800);
+    balloon.setMaxHeight(800);
     balloon.setCloseButtonEnabled(false);
-
+    balloon.setBackgroundColor('#000000');
     return balloon;
   };
 

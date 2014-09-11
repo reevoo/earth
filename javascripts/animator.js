@@ -12,24 +12,24 @@ ReevooEarth.Animator = function () {
     privateMarks        = marks;
     privateInterstitial = interstitial;
 
-    animateRecursively(0);
+    animateRecursively(0, 3000);
   };
 
   // private
-  var animateRecursively = function (index) {
+  var animateRecursively = function (index, popupTime) {
     var mark = privateMarks[index];
 
     var nextAnimation = function () {
       index += 1;
       index %= privateMarks.length;
 
-      animateRecursively(index);
+      animateRecursively(index, 15000);
     };
 
-    animateOne(mark, nextAnimation);
+    animateOne(mark, nextAnimation, popupTime);
   };
 
-  var animateOne = function (mark, nextAnimation) {
+  var animateOne = function (mark, nextAnimation, popupTime) {
     if (interstitialReviewCounter % 4 == 0) {
       privateInterstitial.display(nextAnimation);
     }
@@ -41,7 +41,7 @@ ReevooEarth.Animator = function () {
         after("animation", function () {
           mark.open();
           var length = mark.length;
-          after(3000, function () {
+          after(popupTime, function () {
             mark.close();
             privateEarth.getOptions().setGridVisibility(true);
 
