@@ -30,9 +30,8 @@ ReevooEarth.Animator = function () {
 
   var animateOne = function (mark, nextAnimation, popupTime) {
     if (interstitialReviewCounter % 4 == 0) {
-      //zoomOut
       privateInterstitial.display(nextAnimation);
-
+      flyTo(mark, 50000000);
     }
     else {
       flyTo(mark, 500000);
