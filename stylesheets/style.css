@@ -1,26 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic);
 
-header img {
-    width: 200px;
-}
-
-header span {
-    font-style: italic;
-    color: gray;
-    font-size: 70%;
-}
 
 #interstitial {
-    display: none;
-    background: white;
-    height: 1000px;
-    text-align: center;
-    padding-top: 50px;
-    font-size: 300%;
-}
-
-#interstitial p {
-    padding-top: 50px;
+  background: white;
+  text-align: center;
+  padding-top: 65px;
+  font-family: lato,sans-serif;
+  display:none;
 }
 
 #popup {
@@ -125,9 +111,50 @@ div#username {
   padding: 10px 0 0 50px;
 }
 
-.yourlocation {
-  background-color: rgba(245, 245, 245, 1);
-  width:200px;
+#interstitial .container{
+  margin:50px;
+  display:table;
+  width:90%;
+  border-collapse: collapse;
+}
+#interstitial .table-row{
+  display:table-row;
+  text-align: center;
+}
+#interstitial .col {
+  display: table-cell;
 }
 
+#interstitial .col.stat-number {
+  font-size: 500%;
+  font-weight: bold;
+  text-align:left;
+  padding-top:15px;
+  padding-left:20px;
+  width:10%;
+  color:#464646;
+}
 
+#interstitial .col.stat-text {
+  font-size: 350%;
+  font-weight: lighter;
+  text-align:left;
+  padding-left:35px;
+  padding-top:15px;
+  padding-right:5px;
+  width:10%;
+  color:#868686;
+}
+
+#interstitial .col.first-column {
+  width: 40%;
+}
+
+#interstitial .col.last-column {
+  width: 40%;
+}
+
+.arrow-img {
+  width: 300px;
+  height: 50px;
+}

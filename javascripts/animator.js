@@ -12,7 +12,7 @@ ReevooEarth.Animator = function () {
     privateMarks        = marks;
     privateInterstitial = interstitial;
 
-    animateRecursively(0, 2000);
+    animateRecursively(0, 5000);
   };
 
   // private
@@ -22,7 +22,7 @@ ReevooEarth.Animator = function () {
     var nextAnimation = function () {
       index += 1;
       index %= privateMarks.length;
-      animateRecursively(index, 10000);
+      animateRecursively(index, 5000);
     };
 
     animateOne(mark, nextAnimation, popupTime);
@@ -30,7 +30,9 @@ ReevooEarth.Animator = function () {
 
   var animateOne = function (mark, nextAnimation, popupTime) {
     if (interstitialReviewCounter % 4 == 0) {
+      //zoomOut
       privateInterstitial.display(nextAnimation);
+
     }
     else {
       flyTo(mark, 500000);

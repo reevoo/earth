@@ -20,11 +20,12 @@ var ReevooEarth = function (id) {
         review.longitude
       );
     });
-    marks.unshift(markCurrentLocation(earth));
+    //marks.unshift(markCurrentLocation(earth));
 
     animator.animate(earth, marks, interstitial);
   });
 
+  /*
   var markCurrentLocation = function (earth) {
     // Requires browser location support.
     //navigator.geolocation.getCurrentPosition(function (position) {
@@ -39,4 +40,6 @@ var ReevooEarth = function (id) {
     );
     //});
   };
+  */
+
 };
