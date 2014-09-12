@@ -31,7 +31,7 @@ var ReevooEarth = function (id) {
     return marker.mark(
       earth,
       "",
-      "<div class='yourlocation'>You are here!</div>",
+      null,
       "",
       51.505554,
       -0.104541,

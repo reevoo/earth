@@ -25,7 +25,6 @@ header span {
 
 #popup {
     background-color: rgba(245, 245, 245, 1);
-    border-bottom: 5px solid rgba(254, 133, 9, 1);
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
@@ -127,7 +126,7 @@ div#username {
 }
 
 .yourlocation {
-  background-color: white;
+  background-color: rgba(245, 245, 245, 1);
   width:200px;
 }
 

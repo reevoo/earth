@@ -12,7 +12,7 @@ ReevooEarth.Animator = function () {
     privateMarks        = marks;
     privateInterstitial = interstitial;
 
-    animateRecursively(0, 3000);
+    animateRecursively(0, 2000);
   };
 
   // private
@@ -22,8 +22,7 @@ ReevooEarth.Animator = function () {
     var nextAnimation = function () {
       index += 1;
       index %= privateMarks.length;
-
-      animateRecursively(index, 15000);
+      animateRecursively(index, 10000);
     };
 
     animateOne(mark, nextAnimation, popupTime);
@@ -43,9 +42,8 @@ ReevooEarth.Animator = function () {
           var length = mark.length;
           after(popupTime, function () {
             mark.close();
-            privateEarth.getOptions().setGridVisibility(true);
-
-            after(1000, nextAnimation);
+            privateEarth.getOptions().setGridVisibility(false);
+            after(0, nextAnimation);
           });
         });
       });
@@ -55,7 +53,6 @@ ReevooEarth.Animator = function () {
 
   var flyTo = function(mark, range) {
     var lookAt = privateEarth.createLookAt('');
-
     lookAt.setLatitude(mark.latitude);
     lookAt.setLongitude(mark.longitude);
     lookAt.setRange(range);

@@ -1,6 +1,6 @@
 ReevooEarth.Marker = function () {
   var privateEarth;
-  var defaultImage = "http://www.reevoo.com/images/homepage/introduction/narwhals.png";
+  var defaultImage = "http://i.imgur.com/ixcr0L7.png";
 
   this.mark = function (earth, title, content, review, latitude, longitude, image) {
     privateEarth = earth;
@@ -12,10 +12,12 @@ ReevooEarth.Marker = function () {
     var placemark   = createPlacemark(title, latitude, longitude);
     var normalStyle = createStyle(image, 1.0);
     var hoverStyle  = createStyle(image, 1.5);
-    var balloon     = createBalloon(content);
+    var balloon     = content?createBalloon(content):null;
 
     attachStyles(placemark, normalStyle, hoverStyle);
-    attachBalloon(placemark, balloon);
+    if (balloon) {
+      attachBalloon(placemark, balloon);
+    }
     attachPlacemark(placemark);
 
     var wordCount = 0;
@@ -25,7 +27,9 @@ ReevooEarth.Marker = function () {
 
     return {
       open: function () {
-        privateEarth.setBalloon(balloon);
+        if (balloon) {
+          privateEarth.setBalloon(balloon);
+        }
       },
       close: function () {
         privateEarth.setBalloon(null);
@@ -40,24 +44,19 @@ ReevooEarth.Marker = function () {
   var createPlacemark = function (title, latitude, longitude) {
     var placemark = privateEarth.createPlacemark("");
     placemark.setName(title);
-
     var point = privateEarth.createPoint("");
     point.setLatitude(latitude);
     point.setLongitude(longitude);
     placemark.setGeometry(point);
-
     return placemark;
   };
 
   var createStyle = function (imageHref, scale) {
     var style = privateEarth.createStyle("");
     var icon = privateEarth.createIcon("");
-
     icon.setHref(imageHref);
-
     style.getIconStyle().setIcon(icon);
     style.getIconStyle().setScale(scale);
-
     return style;
   };
 
@@ -68,16 +67,14 @@ ReevooEarth.Marker = function () {
     balloon.setMaxWidth(800);
     balloon.setMaxHeight(800);
     balloon.setCloseButtonEnabled(false);
-    balloon.setBackgroundColor('#000000');
+    balloon.setBackgroundColor('#F5F5F5');
     return balloon;
   };
 
   var attachStyles = function (placemark, normal, hover) {
     var styleMap = privateEarth.createStyleMap("");
-
     styleMap.setNormalStyle(normal);
     styleMap.setHighlightStyle(hover);
-
     placemark.setStyleSelector(styleMap);
   };
 
