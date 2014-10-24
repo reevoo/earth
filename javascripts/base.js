@@ -6,40 +6,21 @@ var ReevooEarth = function (id) {
   var animator     = new ReevooEarth.Animator();
   var interstitial = new ReevooEarth.Interstitial();
 
-  client.authenticate();
   var reviews = client.customerExperienceReviews();
 
   loader.load(id, function (earth) {
     var marks = reviews.map(function (review) {
       return marker.mark(
         earth,
-        review.locationName,
+        review.city,
         renderer.render(review),
         review,
         review.latitude,
         review.longitude
       );
     });
-    //marks.unshift(markCurrentLocation(earth));
 
     animator.animate(earth, marks, interstitial);
   });
-
-  /*
-  var markCurrentLocation = function (earth) {
-    // Requires browser location support.
-    //navigator.geolocation.getCurrentPosition(function (position) {
-    return marker.mark(
-      earth,
-      "",
-      null,
-      "",
-      51.505554,
-      -0.104541,
-      "http://bethesignal.org/wp-content/uploads/2006/02/you-are-here.png"
-    );
-    //});
-  };
-  */
 
 };

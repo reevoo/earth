@@ -12,7 +12,6 @@
   <script charset="utf-8" type="text/javascript" src="javascripts/loader.js"></script>
   <script charset="utf-8" type="text/javascript" src="javascripts/marker.js"></script>
   <script charset="utf-8" type="text/javascript" src="javascripts/client.js"></script>
-  <script charset="utf-8" type="text/javascript" src="javascripts/client/adapter.js"></script>
   <script charset="utf-8" type="text/javascript" src="javascripts/renderer.js"></script>
   <script charset="utf-8" type="text/javascript" src="javascripts/animator.js"></script>
   <script charset="utf-8" type="text/javascript" src="javascripts/interstitial.js"></script>
@@ -20,25 +19,26 @@
 <body>
   <div id="reevoo-earth"></div>
   <div id="interstitial">
-    <img src="images/stanley.png" />
+
+    <div class="header-image" width="100%" ><img id="retailer-logo" /> & <img src="images/reevoo.png" /></div>
     <div class="container">
-      <div class="table-row">
+      <div id="num_reviews" class="table-row">
         <div class="col first-column"><img class="arrow-img" src="images/arrow.png"></div>
-        <div class="col stat-number">6,293</div>
+        <div id="num_reviews_value" class="col stat-number">6,293</div>
         <div class="col stat-text"> reviews</div>
-        <div class="col last-column"><hr COLOR="#FFD600" WIDTH="80%" size="8px"></div>
+        <div class="col last-column"><hr COLOR="#FF7F19" WIDTH="80%" size="8px"></div>
       </div>
-      <div class="table-row">
+      <div id="num_countries" class="table-row">
         <div class="col first-column"><img class="arrow-img" src="images/arrow.png"></div>
-        <div class="col stat-number">17</div>
+        <div id="num_countries_value" class="col stat-number">17</div>
         <div class="col stat-text"> countries</div>
-        <div class="col last-column"><hr COLOR="#FFD600" WIDTH="80%" size="8px"></div>
+        <div class="col last-column"><hr COLOR="#FF7F19" WIDTH="80%" size="8px"></div>
       </div>
-      <div class="table-row">
+      <div id="num_languages" class="table-row">
         <div class="col first-column"><img class="arrow-img" src="images/arrow.png"></div>
-        <div class="col stat-number">17</div>
+        <div id="num_languages_value" class="col stat-number">17</div>
         <div class="col stat-text"> languages</div>
-        <div class="col last-column"><hr COLOR="#FFD600" WIDTH="80%"  size="8px"></div>
+        <div class="col last-column"><hr COLOR="#FF7F19" WIDTH="80%"  size="8px"></div>
       </div>
     </div>
 

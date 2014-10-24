@@ -1,40 +1,35 @@
 ReevooEarth.Client = function () {
-  var api = "http://rw-api3.reevoocloud.com/v4";
-  var adapter = new ReevooEarth.Client.Adapter();
-
-  this.authenticate = function () {
-    // Edwin wants the reevoo earth page to be open to everybody, without having to login.
-    // We will need to create a special endpoint for Reevoo Earth and hardcoded username/password in the code
-    // with access to that end point
-
-    var user = "Rowland";
-    var pass = "Rowland";
-    $.ajaxSetup({ headers: authHeader(user, pass), async: false });
-  };
 
   this.customerExperienceReviews = function () {
-    /*
     var trkref = param("trkref");
-
-    var url = api;
-    url += "/organisations;trkref=" + trkref;
-    url += "/customer_experience_reviews";
-
+    var url = "http://earth.reevoo.com/v4/organisations/" + trkref + "/reevoo_earth";
+    $.ajaxSetup({
+      headers: { 'Authorization': "Basic ZWFydGg6ZWFydGg=" },
+      async: false
+    });
     var data;
-    $.get(url, function (d) { data = d; });
-    var reviews = data.customer_experience_reviews;
-    return adapter.customerExperience(reviews);
-     */
-    return adapter.customerExperience(null); // comment this and uncomment the one above when pulling from real api endpoint
+    $.get(url, function (d) {
+      if ("reviews" in d) {
+        data = d.reviews;
+        $('#num_reviews_value').html(d.stats.number_of_reviews);
+        if (d.stats.number_of_languages <=1) {
+          $('#num_languages').hide();
+        }
+        if (d.stats.number_of_countries <=1) {
+          $('#num_countries').hide();
+        }
+        $('#retailer-logo').attr("src", "http://cdn.images.reevoo.com/retailers/Center/" + trkref + "/brand/200x144.png%1fbackground=transparent");
+
+      } else {
+        data = [];
+      }
+    });
+
+    return data;
   };
 
-  // private
-  var authHeader = function (user, pass) {
-    return { 'Authorization': 'Basic ' + btoa(user + ":" + pass) }
-  };
-
-  // http://stackoverflow.com/questions/1403888/get-escaped-url-parameter#answer-1404100
   var param = function (name) {
     return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
   }
+
 };

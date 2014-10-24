@@ -20,11 +20,6 @@ ReevooEarth.Marker = function () {
     }
     attachPlacemark(placemark);
 
-    var wordCount = 0;
-    if (review) {
-//      wordCount = review.generalComments.split(' ').length
-    }
-
     return {
       open: function () {
         if (balloon) {
@@ -35,8 +30,7 @@ ReevooEarth.Marker = function () {
         privateEarth.setBalloon(null);
       },
       latitude: latitude,
-      longitude: longitude,
-      wordCount: wordCount
+      longitude: longitude
     }
   };
 
