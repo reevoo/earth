@@ -3,10 +3,10 @@ ReevooEarth.Interstitial = function () {
   var interstitial = $("#interstitial");
 
   this.display = function (callback) {
-    swapView(reevooEarth, interstitial, 1000, function () {
+    swapView(reevooEarth, interstitial, 2000, function () {
       setTimeout(function () {
-        swapView(interstitial, reevooEarth, 1000, callback);
-      }, 3000);
+        swapView(interstitial, reevooEarth, 2000, callback);
+      }, 6000);
     });
   };
 
