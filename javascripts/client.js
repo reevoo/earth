@@ -1,35 +1,25 @@
 ReevooEarth.Client = function () {
-
-  this.customerExperienceReviews = function () {
-    var trkref = param("trkref");
-    var url = "http://earth.reevoo.com/v4/organisations/" + trkref + "/reevoo_earth";
-    $.ajaxSetup({
-      headers: { 'Authorization': "Basic ZWFydGg6ZWFydGg=" },
-      async: false
-    });
+  this.trkref = param("trkref");
+  this.retrieveReviews = function () {
+    var url = "http://localhost:3000/v4/organisations/" + this.trkref + "/reevoo_earth";
+    //var url = "https://api.reevoocloud.com/v4/organisations/" + this.trkref + "/reevoo_earth";
     var data;
-    $.get(url, function (d) {
-      if ("reviews" in d) {
-        data = d.reviews;
-        $('#num_reviews_value').html(d.stats.number_of_reviews);
-        if (d.stats.number_of_languages <=1) {
-          $('#num_languages').hide();
+    var trkref = this.trkref;
+    var xhr = $.ajax({
+      url: url,
+      jsonp: "callback",
+      dataType: "jsonp",
+      success: function( response ) {
+        if (response && response.stats && response.reviews) {
+          localStorage.setItem("reevoo_earth_reviews_" + trkref, JSON.stringify(response));
+          location.reload();
         }
-        if (d.stats.number_of_countries <=1) {
-          $('#num_countries').hide();
-        }
-        $('#retailer-logo').attr("src", "http://cdn.images.reevoo.com/retailers/Center/" + trkref + "/brand/200x144.png%1fbackground=transparent");
-
-      } else {
-        data = [];
       }
     });
-
-    return data;
   };
 
-  var param = function (name) {
-    return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
-  }
-
 };
+
+var param = function (name) {
+  return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+}

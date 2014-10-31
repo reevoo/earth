@@ -38,6 +38,19 @@ ReevooEarth.Renderer = function () {
     return html;
   };
 
+  this.renderStats = function(stats, trkref) {
+    $('#num_reviews_value').html(stats.number_of_reviews);
+    $('#num_languages_value').html(stats.number_of_languages);
+    $('#num_countries_value').html(stats.number_of_countries);
+    if (stats.number_of_languages <=1) {
+      $('#num_languages').hide();
+    }
+    if (stats.number_of_countries <=1) {
+      $('#num_countries').hide();
+    }
+    $('#retailer-logo').attr("src", "http://cdn.images.reevoo.com/retailers/Center/" + trkref + "/brand/200x144.png%1fbackground=transparent");
+  }
+
   var submittedAt = function (review) {
     return jQuery.timeago(review.date.replace("UTC", ""));
   };
